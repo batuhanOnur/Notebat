@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import loginast from '../assets/loginast.png'
 
 
@@ -37,7 +38,7 @@ export const LoginForm = () => {
 
                 <div className="mt-4 text-center">
                     <span className="text-textgrey text-xs">Don't have an account? </span>
-                    <span className="text-textorange text-xs">Register</span>
+                    <Link to="/register" className="text-textorange text-xs">Register</Link>
                 </div>
             </form>
         </div>
