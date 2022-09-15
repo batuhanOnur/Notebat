@@ -1,18 +1,23 @@
 import React from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
-import User from '../interfaces/user';
-import { useAddNewUserMutation }  from '../features/api/registerSlice'
+import { User } from '../interfaces/auth';
+import { useAddNewUserMutation }  from '../features/api/authSlice'
+import { Navigate } from 'react-router-dom'
 
 const RegisterForm = () => {
 
     const { register, handleSubmit,formState: { errors }, } = useForm<User>();
-    const [addNewUser] = useAddNewUserMutation()
+    const [addNewUser , {isSuccess}] = useAddNewUserMutation()
 
     const onSubmit: SubmitHandler<User> = data => {
         addNewUser(data)
         .unwrap()
-        .then(()=> {})
+        .then((resp)=> {console.log('response', resp)})
     }
+
+    if(isSuccess) {
+        return <Navigate to="/login"/>
+    } 
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
