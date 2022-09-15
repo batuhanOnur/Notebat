@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from "react-router-dom";
-import { ApiProvider } from '@reduxjs/toolkit/dist/query/react'
-import { registerSlice } from './features/api/registerSlice'
+import { Provider } from 'react-redux';
+import { store } from './app/store'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,9 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <React.StrictMode>
-      <ApiProvider api={registerSlice}>
+      <Provider store={store}>
         <App />
-      </ApiProvider>
+      </Provider>
     </React.StrictMode>
   </BrowserRouter>
 );
