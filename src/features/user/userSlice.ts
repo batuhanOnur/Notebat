@@ -11,7 +11,6 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         loggedIn: (state) => {
-            console.log('reducer cagirildi')
             state.isAuth = true;
         },
         logOut: (state) => {

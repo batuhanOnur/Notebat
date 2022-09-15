@@ -17,13 +17,16 @@ export const LoginForm = () => {
     const onSubmit: SubmitHandler<Login> = data => {
         loginUser(data)
         .unwrap()
-        .then((resp)=> {console.log('response', resp)})
+        .then(()=> {
+            dispatch(loggedIn())
+        })
     }
 
     if(isSuccess){
-        dispatch(loggedIn())
         return <Navigate to="/"/>
     }
+
+    
 
     return(
         <div className="w-full h-full flex flex-col items-center">

@@ -28,8 +28,18 @@ export const authSlice = createApi({
                    'Content-type': 'application/json; charset=UTF-8',
                 },
             })
-        })
+        }),
+        isUser : builder.mutation<User,void>({
+            query: () => ({
+                url:'/user',
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                   'Content-type': 'application/json; charset=UTF-8',
+                },
+            })
+        }),
     })
 });
 
-export const { useAddNewUserMutation, useLoginUserMutation } = authSlice
+export const { useAddNewUserMutation, useLoginUserMutation, useIsUserMutation } = authSlice
