@@ -6,10 +6,13 @@ import { useLoginUserMutation }  from '../../features/api/authSlice'
 import { Navigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { loggedIn } from '../../features/user/userSlice'
+import { useState } from 'react';
+import AuthNotification from '../notifications/AuthNotification'
 
 export const LoginForm = () => {
 
     const { register, handleSubmit } = useForm<Login>();
+    const [ isLogin, setLogin ] = useState<boolean>(false)
     const [loginUser , {isSuccess}] = useLoginUserMutation()
     const dispatch = useDispatch()
 
@@ -23,7 +26,7 @@ export const LoginForm = () => {
     }
 
     if(isSuccess){
-        return <Navigate to="/"/>
+        setLogin(true)
     }
 
     return(
@@ -64,6 +67,16 @@ export const LoginForm = () => {
                     <Link to="/register" className="text-textorange text-xs">Register</Link>
                 </div>
             </form>
+
+            { isLogin && 
+                <AuthNotification 
+                    title={"Login Succesful"}
+                    message={"Redirect to Home Page"}
+                    color={"green"}
+                    autoClose={2000}
+                    navigateTo={""}
+                />
+            }
         </div>
     )
 }

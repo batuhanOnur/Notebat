@@ -4,7 +4,7 @@ import { User } from '../../interfaces/auth';
 import { useAddNewUserMutation }  from '../../features/api/authSlice'
 import { Link } from 'react-router-dom'
 import registerast from '../../assets/registerast.png'
-import RegisterNotification from '../notifications/RegisterNotification'
+import AuthNotification from '../notifications/AuthNotification'
 
 
 const RegisterForm:React.FC = () => {
@@ -42,7 +42,7 @@ const RegisterForm:React.FC = () => {
         <div className="block mt-3">
             <label>
                 <span className="block text-textgreen text-sm">EMAIL</span>
-                <input {...register("email", { required:true})} type="email" className=" w-[100%] rounded-md p-1 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 peer ..."/>
+                <input {...register("email", { required:true})} type="email" className=" w-[100%] rounded-md p-2 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 peer ..."/>
                 <p className="mt-2 invisible peer-invalid:visible text-pink-600 text-xs">
                     Please provide a valid email address.
                 </p>
@@ -52,25 +52,25 @@ const RegisterForm:React.FC = () => {
         <div className="flex">
             <label className="block mt-3">
                 <span className="block text-textgreen text-sm">FIRSTNAME</span>
-                <input {...register("name", { required:true})} type="text" className="w-[95%] rounded-md p-1 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"/>
+                <input {...register("name", { required:true})} type="text" className="w-[95%] rounded-md p-2 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"/>
                 <p className="mt-2 text-pink-600 text-xs">{errors.name?.type === 'required' && "First name is required"}</p>
             </label>
 
             <label className="block mt-3">
                 <span className="block text-textgreen text-sm">LASTNAME</span>
-                <input {...register("lastName", { required:true})} type="text" className="w-[100%] rounded-md p-1 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"/>
+                <input {...register("lastName", { required:true})} type="text" className="w-[100%] rounded-md p-2 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"/>
                 <p className="mt-2 text-pink-600 text-xs">{errors.lastName?.type === 'required' && "First name is required"}</p>
             </label>
         </div>
 
         <label className="block mt-3">
             <span className="block text-textgreen text-sm">PASSWORD</span>
-            <input {...register("password", { required:true})} type="password" className="w-[100%] rounded-md p-1 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"/>
+            <input {...register("password", { required:true})} type="password" className="w-[100%] rounded-md p-2 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"/>
             <p className="mt-2 text-pink-600 text-xs">{errors.password?.type === 'required' && "First name is required"}</p>
         </label>
 
         <div className="mt-5">
-            <button className="bg-textgreen rounded-lg w-[100%] text-white p-1">
+            <button className="bg-textgreen rounded-lg w-[100%] text-white p-2">
                 REGISTER
             </button>
         </div>
@@ -84,7 +84,13 @@ const RegisterForm:React.FC = () => {
     
     { isRegistered && 
         <div className="absolute left-20 bottom-20">
-            <RegisterNotification />
+            <AuthNotification 
+                title={"Register Succesful"}
+                message={"Redirect to Login Page"}
+                color={"green"}
+                autoClose={2000}
+                navigateTo={"login"}
+            />
         </div>
     }
     </div>
