@@ -3,11 +3,11 @@ import loginast from '../../assets/loginast.png'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Login } from '../../interfaces/auth';
 import { useLoginUserMutation }  from '../../features/api/authSlice'
-import { Navigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { loggedIn } from '../../features/user/userSlice'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AuthNotification from '../notifications/AuthNotification'
+
 
 export const LoginForm = () => {
 
@@ -25,9 +25,12 @@ export const LoginForm = () => {
         })
     }
 
-    if(isSuccess){
-        setLogin(true)
-    }
+    // inite-loop önlemek için
+    useEffect(()=>{
+        if(isSuccess){
+            setLogin(true)
+        }
+    },[isSuccess])
 
     return(
         <div className="w-full h-full flex flex-col items-center">
