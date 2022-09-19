@@ -1,5 +1,6 @@
 import React,{ useState} from 'react'
 import { AppShell, Navbar, Header,useMantineTheme,MediaQuery,Burger } from '@mantine/core';
+import NavbarList from '../components/layout/NavbarList'
 
 const HomePage = () => {
 
@@ -16,7 +17,7 @@ const HomePage = () => {
       }}
       navbar={
         <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
-          <p>Application navbar</p>
+          <NavbarList userId="63247443350da2989d3c5add"/>
         </Navbar>
       }
       header={

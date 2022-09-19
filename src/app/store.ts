@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { authSlice } from '../features/api/authSlice'
+import { workspaceSlice } from '../features/api/workspaceSlice'
 import userSlice from '../features/user/userSlice'
 import {
   persistStore,
@@ -25,6 +26,7 @@ const persistedReducer = persistReducer(persistConfig, userSlice)
 export const store = configureStore({
     reducer: {
       [authSlice.reducerPath]: authSlice.reducer,
+      [workspaceSlice.reducerPath] : workspaceSlice.reducer,
       persistedReducer
     },
     middleware: (getDefaultMiddleware) =>
@@ -33,7 +35,8 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(
-      authSlice.middleware
+      authSlice.middleware,
+      workspaceSlice.middleware
     ),
   })
   setupListeners(store.dispatch)
