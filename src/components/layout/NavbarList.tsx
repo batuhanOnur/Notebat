@@ -1,4 +1,7 @@
 import { useGetSpacesQuery } from '../../features/api/workspaceSlice'
+import { ThemeIcon } from '@mantine/core';
+import IconProvider from '../../icons/IconProvider'
+import { NavLink } from 'react-router-dom';
 
 type Props = {
     userId: string
@@ -21,10 +24,27 @@ const NavbarList: React.FC<Props> = (props) => {
 
     return(
         <div>
+            <div className="flex justify-between">
+                <span>Work Spaces</span>
+                <div className="cursor-pointer">
+                   <IconProvider icon="plus"/>
+                </div>
+            </div>
             { isSuccess && 
               <>
-              {data.$values.map(({title ,$id}:any)=>(
-                <div key={$id}>{title}</div>
+              {data.$values.map(({title ,$id, iconColor, icon}:any)=>(
+                <NavLink
+                key={$id} 
+                to="/" 
+                className={isActive => "hover:bg-violet-700 flex mt-4 border-r-3 border-violet-500" + (!isActive ? "flex mt-4": "flex mt-4")}
+                >
+                   <ThemeIcon size="sm" color={iconColor}>
+                      <IconProvider icon={icon}/>
+                   </ThemeIcon>
+                   <div className="ml-2 text-sm">
+                     {title}
+                   </div>
+                </NavLink>
               ))}
               </>
             }

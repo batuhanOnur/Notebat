@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { WorkSpaces } from '../../interfaces/workSpace';
 
+
 export const workspaceSlice = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8000/api/workspace'
