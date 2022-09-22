@@ -2,11 +2,19 @@ import React,{ useState} from 'react'
 import { AppShell, Navbar, Header,useMantineTheme,MediaQuery,Burger } from '@mantine/core';
 import NavbarList from '../components/layout/NavbarList'
 import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/store';
 
 const HomePage = () => {
 
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
+
+  const id = useSelector((state: RootState) => state.persistedReducer.id)
+
+  const LogOut = () => {
+     
+  }
   
   return (
     <AppShell
@@ -18,7 +26,7 @@ const HomePage = () => {
       }}
       navbar={
         <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
-          <NavbarList userId="63247443350da2989d3c5add"/>
+          <NavbarList userId={id}/>
         </Navbar>
       }
       header={
@@ -34,7 +42,7 @@ const HomePage = () => {
               />
             </MediaQuery>
 
-            <p>Application header</p>
+            <button onClick={LogOut}>logut</button>
           </div>
         </Header>
       }

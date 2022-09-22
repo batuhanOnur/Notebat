@@ -1,16 +1,21 @@
 
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth"
+import { useGetUserQuery } from '../../features/api/authSlice'
 
 const NavigationGuard = () => {
 
-  const auth = useAuth();
   const location = useLocation();
-  return auth.isAuth ? (
+
+  const { isError } = useGetUserQuery();
+
+    
+  if(isError) {
+    return <Navigate to="/login" state={{ from: location }} />
+  }
+
+  return (
     <Outlet />
-  ) : (
-    <Navigate to="/login" state={{ from: location }} />
-  );
+  )
 }
 
 export default NavigationGuard

@@ -4,7 +4,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
 import NavigationGuard from './utils/navigationGuards/NavigationGuard'
-import Boards from './components/boards/Boards';
+import BoardsPage from './pages/BoardsPage';
 //import Board from './components/boards/Board';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route element={<NavigationGuard />}>
           <Route path="/boards" element={<HomePage />}>
-            <Route path=":id" element={<Boards />} />
+            <Route path=":id" element={<BoardsPage />} />
           </Route>
         </Route>
       </Routes>

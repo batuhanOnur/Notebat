@@ -3,8 +3,8 @@ import loginast from '../../assets/loginast.png'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Login } from '../../interfaces/auth';
 import { useLoginUserMutation }  from '../../features/api/authSlice'
-import { useDispatch } from 'react-redux'
 import { loggedIn } from '../../features/user/userSlice'
+import { useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react';
 import AuthNotification from '../notifications/AuthNotification'
 
@@ -16,12 +16,11 @@ export const LoginForm = () => {
     const [loginUser , {isSuccess}] = useLoginUserMutation()
     const dispatch = useDispatch()
 
-
     const onSubmit: SubmitHandler<Login> = data => {
         loginUser(data)
         .unwrap()
-        .then(()=> {
-            dispatch(loggedIn())
+        .then((response)=> {
+            dispatch(loggedIn(response))
         })
     }
 
@@ -77,7 +76,7 @@ export const LoginForm = () => {
                     message={"Redirect to Home Page"}
                     color={"green"}
                     autoClose={2000}
-                    navigateTo={""}
+                    navigateTo={"boards"}
                 />
             }
         </div>

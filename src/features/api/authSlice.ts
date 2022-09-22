@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { User, RegisterReturn, Login } from '../../interfaces/auth';
+import { User, RegisterReturn, Login, LoggedUser } from '../../interfaces/auth';
 
 export const authSlice = createApi({
     reducerPath: 'registerSlice',
@@ -18,28 +18,31 @@ export const authSlice = createApi({
                 },
             })
         }),
-        loginUser : builder.mutation<RegisterReturn,Login>({
+        loginUser : builder.mutation<LoggedUser,Login>({
             query: (payload) => ({
                 url:'/login',
                 method: 'POST',
                 body: payload,
-                credentials: 'include',
+                credentials:'include',
                 headers: {
                    'Content-type': 'application/json; charset=UTF-8',
                 },
             })
         }),
-        isUser : builder.mutation<User,void>({
-            query: () => ({
+        getUser:builder.query<LoggedUser,void>({
+            query:() => ({
                 url:'/user',
                 method: 'GET',
                 credentials: 'include',
-                headers: {
-                   'Content-type': 'application/json; charset=UTF-8',
-                },
-            })
-        }),
+                // headers: {
+                //     'Content-type': 'application/json; charset=UTF-8',
+                //  },
+            }),
+            transformResponse: (response : LoggedUser) => {
+                return response
+            }
+        })
     })
 });
 
-export const { useAddNewUserMutation, useLoginUserMutation, useIsUserMutation } = authSlice
+export const { useAddNewUserMutation, useLoginUserMutation, useGetUserQuery } = authSlice

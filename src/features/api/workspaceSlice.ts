@@ -11,7 +11,6 @@ export const workspaceSlice = createApi({
         getSpaces:builder.query<WorkSpaces,string>({
             query:(userId) => ({ url: `${userId}`}),
             transformResponse: (response : WorkSpaces) => {
-                console.log('repso', response)
                 return response;
             }
         })

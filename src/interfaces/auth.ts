@@ -15,5 +15,12 @@ export interface Login {
 }
 
 export interface Auth {
-    isAuth: boolean
+    isAuth: boolean,
+}
+
+export interface LoggedUser {
+    email: string,
+    name: string,
+    lastName: string,
+    id: string
 }

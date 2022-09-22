@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import { useGetSpacesQuery } from '../../features/api/workspaceSlice'
 import { ThemeIcon } from '@mantine/core';
 import IconProvider from '../../icons/IconProvider'
 import { NavLink } from 'react-router-dom';
+import { Modal } from '@mantine/core';
+import WorkSpaceForm from '../forms/WorkSpaceForm';
+
 
 type Props = {
     userId: string
@@ -14,6 +18,8 @@ const NavbarList: React.FC<Props> = (props) => {
         skip: false,
     });
 
+    const [opened, setOpened] = useState(false);
+
     if (isLoading) return <div>Loading...</div>
     if (error) {
         console.log('error', data)
@@ -24,9 +30,17 @@ const NavbarList: React.FC<Props> = (props) => {
 
     return(
         <div>
+            <Modal
+             size="xl"
+             opened={opened}
+             onClose={() => setOpened(false)}
+             title="Lets create new workspace!"
+            >
+               <WorkSpaceForm />
+            </Modal>
             <div className="flex justify-between">
                 <span>Work Spaces</span>
-                <div className="cursor-pointer">
+                <div className="cursor-pointer" onClick={() => setOpened(true)}>
                    <IconProvider icon="plus"/>
                 </div>
             </div>
