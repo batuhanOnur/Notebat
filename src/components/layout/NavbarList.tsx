@@ -35,12 +35,12 @@ const NavbarList: React.FC<Props> = (props) => {
               {data.$values.map(({title ,$id, iconColor, icon}:any)=>(
                 <NavLink
                 key={$id} 
-                to="/" 
-                className={isActive => "hover:bg-violet-700 flex mt-4 border-r-3 border-violet-500" + (!isActive ? "flex mt-4": "flex mt-4")}
+                to={`/boards/${$id}`} 
+                className={({ isActive }) => (isActive ? 'flex mt-2 p-2 border-l-2 border-green-500 bg-gray-800' : 'flex mt-2 p-2')}
                 >
-                   <ThemeIcon size="sm" color={iconColor}>
-                      <IconProvider icon={icon}/>
-                   </ThemeIcon>
+                    <ThemeIcon size="sm" color={iconColor}>
+                        <IconProvider icon={icon}/>
+                    </ThemeIcon>
                    <div className="ml-2 text-sm">
                      {title}
                    </div>

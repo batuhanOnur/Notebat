@@ -1,6 +1,7 @@
 import React,{ useState} from 'react'
 import { AppShell, Navbar, Header,useMantineTheme,MediaQuery,Burger } from '@mantine/core';
 import NavbarList from '../components/layout/NavbarList'
+import { Outlet } from 'react-router-dom';
 
 const HomePage = () => {
 
@@ -38,7 +39,7 @@ const HomePage = () => {
         </Header>
       }
     >
-      deneme
+      <Outlet />
     </AppShell>
   )
 }

@@ -6,8 +6,6 @@ const NavigationGuard = () => {
 
   const auth = useAuth();
   const location = useLocation();
-
-
   return auth.isAuth ? (
     <Outlet />
   ) : (
