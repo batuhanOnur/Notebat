@@ -14,8 +14,9 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route element={<NavigationGuard />}>
+          <Route index element={<HomePage />} />
           <Route path="/boards" element={<HomePage />}>
-            <Route path=":id" element={<BoardsPage />} />
+            <Route path=":id" element={<BoardsPage />}/>
           </Route>
         </Route>
       </Routes>
