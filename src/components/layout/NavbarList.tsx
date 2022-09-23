@@ -52,12 +52,12 @@ const NavbarList: React.FC<Props> = (props) => {
                 to={`/boards/${$id}`} 
                 className={({ isActive }) => (isActive ? 'flex mt-2 p-2 border-l-2 border-green-500 bg-gray-800' : 'flex mt-2 p-2')}
                 >
-                    <ThemeIcon size="sm" color={iconColor}>
-                        <IconProvider icon={icon}/>
-                    </ThemeIcon>
-                   <div className="ml-2 text-sm">
-                     {title}
-                   </div>
+                        <ThemeIcon size="sm" color={iconColor}>
+                            <IconProvider icon={icon}/>
+                        </ThemeIcon>
+                        <div className="ml-2 text-sm">
+                            {title}
+                        </div>
                 </NavLink>
               ))}
               </>

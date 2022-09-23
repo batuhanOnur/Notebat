@@ -19,17 +19,17 @@ const IconProvider:React.FC<props> = (props) => {
     const iconSwitch = (parameter : string) => {
         switch(parameter){
           case 'plus':
-            return <IconPlus />
+            return <IconPlus/>
           case 'cookie':
-            return <IconCookie />
+            return <IconCookie size={20}/>
           case 'database':
-            return <IconDatabase />
+            return <IconDatabase size={20}/>
           case 'growth':
-            return <IconGrowth />
+            return <IconGrowth size={20}/>
           case 'pencil':
-            return <IconPencil />
+            return <IconPencil size={20}/>
           case 'book':
-            return <IconBook />
+            return <IconBook size={20}/>
           default: 
             return <IconNotebook />
         }
