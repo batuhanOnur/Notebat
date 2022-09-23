@@ -1,8 +1,14 @@
 import { Group,TextInput,Text } from '@mantine/core';
 import { Select, Button } from '@mantine/core';
-import { forwardRef } from 'react';
+import { Dispatch, forwardRef, SetStateAction } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../app/store';
 import IconProvider from '../../icons/IconProvider';
 import { data } from '../../utils/datas/iconSelectData'
+// import { WorkSpace } from '../../interfaces/workSpace';
+import { useForm } from "@mantine/form";
+import { useAddWorkSpaceMutation } from '../../features/api/workspaceSlice'
+
 
 
 interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
@@ -21,12 +27,39 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
     )
 )
 
-const WorkSpaceForm = () => {
+interface Props {
+    setOpened : Dispatch<SetStateAction<boolean>>;
+}
+
+const WorkSpaceForm: React.FC<Props> = ({setOpened}) => {
+ 
+    const [AddWorkSpace , {isSuccess}] = useAddWorkSpaceMutation()
+    const id = useSelector((state: RootState) => state.persistedReducer.id)
+    const form = useForm({
+        initialValues: {
+            title: '',
+            icon: '',
+            createdUserId: id,
+            iconColor: 'yellow'
+        },
+    });
+
+    if(isSuccess) setOpened(false)
+
+    const sendWorkSpace = (values: any) => {
+        console.log('values', values)
+        AddWorkSpace(values)
+        .unwrap()
+        .then((response) => {
+            console.log('response', response)
+        })
+    }
+
     return(
-        <div>
+        <form onSubmit={form.onSubmit((values:any) => {sendWorkSpace(values)})}>
             <Group>
                 <div>
-                    <TextInput placeholder="Work space name" label="Name" />
+                    <TextInput placeholder="Work space name" label="Name" {...form.getInputProps('title')}/>
                 </div>
 
                 <div className="ml-4">
@@ -35,14 +68,15 @@ const WorkSpaceForm = () => {
                     label="Icon" 
                     data={data} 
                     itemComponent={SelectItem}
+                    {...form.getInputProps('icon')}
                     />
                 </div>
                 
                 <div className="mt-6 ml-4">
-                    <Button variant="outline">Create</Button>
+                    <Button type="submit" variant="outline">Create</Button>
                 </div>
             </Group>
-        </div>
+        </form>
     )
 }
 

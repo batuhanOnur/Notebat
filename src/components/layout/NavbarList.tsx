@@ -18,7 +18,7 @@ const NavbarList: React.FC<Props> = (props) => {
         skip: false,
     });
 
-    const [opened, setOpened] = useState(false);
+    const [opened, setOpened] = useState<boolean>(false);
 
     if (isLoading) return <div>Loading...</div>
     if (error) {
@@ -36,7 +36,7 @@ const NavbarList: React.FC<Props> = (props) => {
              onClose={() => setOpened(false)}
              title="Lets create new workspace!"
             >
-               <WorkSpaceForm />
+               <WorkSpaceForm setOpened={setOpened}/>
             </Modal>
             <div className="flex justify-between">
                 <span>Work Spaces</span>
