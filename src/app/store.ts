@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { authSlice } from '../features/api/authSlice'
 import { workspaceSlice } from '../features/api/workspaceSlice'
+import { boardSlice } from '../features/api/boardSlice'
 import userSlice from '../features/user/userSlice'
 import {
   persistStore,
@@ -27,6 +28,7 @@ export const store = configureStore({
     reducer: {
       [authSlice.reducerPath]: authSlice.reducer,
       [workspaceSlice.reducerPath] : workspaceSlice.reducer,
+      [boardSlice.reducerPath] : boardSlice.reducer,
       persistedReducer
     },
     middleware: (getDefaultMiddleware) =>
@@ -36,7 +38,8 @@ export const store = configureStore({
       },
     }).concat(
       authSlice.middleware,
-      workspaceSlice.middleware
+      workspaceSlice.middleware,
+      boardSlice.middleware,
     ),
   })
   setupListeners(store.dispatch)

@@ -1,8 +1,29 @@
 import React from 'react'
+import { useParams } from 'react-router-dom';
+import { useGetBoardsQuery } from '../features/api/boardSlice'
+import NoBoard from '../components/boards/NoBoard'
 
 const BoardsPage = () => {
+  
+  let { id } = useParams(); // workspace id
+
+  const { data, isSuccess } = useGetBoardsQuery(id,{
+    refetchOnMountOrArgChange: true,
+    skip: false,
+  });
+
+
   return (
-    <div>Boards</div>
+    <div>
+      {
+      isSuccess && 
+         data.$values.length > 0 
+         ? <div>success</div>
+         : <div className="flex items-center justify-center min-h-screen -translate-y-20">
+              <NoBoard id={id}/>
+           </div>
+      }
+    </div>
   )
 }
 

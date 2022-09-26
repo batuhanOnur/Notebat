@@ -8,13 +8,14 @@ const NavigationGuard = () => {
 
   const { isError } = useGetUserQuery();
 
-    
-  if(isError) {
-    return <Navigate to="/login" state={{ from: location }} />
-  }
-
   return (
-    <Outlet />
+    <div>
+       {
+        isError 
+        ? <Navigate to="/login" state={{ from: location }} />
+        : <Outlet />
+       }
+    </div>
   )
 }
 

@@ -33,7 +33,7 @@ interface Props {
 
 const WorkSpaceForm: React.FC<Props> = ({setOpened}) => {
  
-    const [AddWorkSpace , {isSuccess}] = useAddWorkSpaceMutation()
+    const [AddWorkSpace] = useAddWorkSpaceMutation()
     const id = useSelector((state: RootState) => state.persistedReducer.id)
     const form = useForm({
         initialValues: {
@@ -44,14 +44,13 @@ const WorkSpaceForm: React.FC<Props> = ({setOpened}) => {
         },
     });
 
-    if(isSuccess) setOpened(false)
 
     const sendWorkSpace = (values: any) => {
         console.log('values', values)
         AddWorkSpace(values)
         .unwrap()
-        .then((response) => {
-            console.log('response', response)
+        .then(() => {
+            setOpened(false)
         })
     }
 

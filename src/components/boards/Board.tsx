@@ -1,8 +1,10 @@
 import React from 'react'
 
 const Board = () => {
+
+
   return (
-    <div>Boardsssss</div>
+    <div>workspaceId</div>
   )
 }
 

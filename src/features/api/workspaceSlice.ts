@@ -3,6 +3,7 @@ import { WorkSpaces, WorkSpace } from '../../interfaces/workSpace';
 
 
 export const workspaceSlice = createApi({
+    reducerPath: 'workspaceSlice',
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8000/api/workspace'
     }),
