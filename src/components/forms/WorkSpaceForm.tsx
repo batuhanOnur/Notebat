@@ -14,7 +14,7 @@ import { useAddWorkSpaceMutation } from '../../features/api/workspaceSlice'
 interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
     value: string;
     label: string;
-  }
+}
 
 const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
     ({ label, ...others }: ItemProps, ref) => (
@@ -46,7 +46,6 @@ const WorkSpaceForm: React.FC<Props> = ({setOpened}) => {
 
 
     const sendWorkSpace = (values: any) => {
-        console.log('values', values)
         AddWorkSpace(values)
         .unwrap()
         .then(() => {

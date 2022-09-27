@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { User, RegisterReturn, Login, LoggedUser } from '../../interfaces/auth';
+import { User, UserList, RegisterReturn, Login, LoggedUser } from '../../interfaces/auth';
 
 export const authSlice = createApi({
     reducerPath: 'registerSlice',
@@ -41,8 +41,28 @@ export const authSlice = createApi({
             transformResponse: (response : LoggedUser) => {
                 return response
             }
+        }),
+        getAllUsers: builder.query<UserList,string>({
+            query:(payload)=>({
+                url:`/all/${payload}`,
+                method:'GET',
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            }),
+            transformResponse: (response: any) => {
+                response.$values.forEach((element:any,index:any) => {
+                    element.value = element.email
+                    element.label = element.value
+                    element.lastname = element.lastName
+                    delete element.$id
+                    delete element.lastName
+                })
+                console.log('response', response)
+                return response;
+            }
         })
     })
 });
 
-export const { useAddNewUserMutation, useLoginUserMutation, useGetUserQuery } = authSlice
+export const { useAddNewUserMutation, useLoginUserMutation, useGetUserQuery, useGetAllUsersQuery } = authSlice

@@ -16,18 +16,18 @@ export const boardSlice = createApi({
                 return response;
             }
         }),
-        // addWorkSpace: builder.mutation<WorkSpace,string>({
-        //     query:(payload) => ({
-        //         url: '/create',
-        //         method: 'POST',
-        //         body:payload,
-        //         headers: {
-        //             'Content-type': 'application/json; charset=UTF-8',
-        //         }
-        //     }),
-        //     invalidatesTags: ['Board'],
-        // })
+        addBoard: builder.mutation<Boards,string>({
+            query:(payload) => ({
+                url: '/create',
+                method: 'POST',
+                body:payload,
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
+            }),
+            invalidatesTags: ['Board'],
+        })
     })
 })
 
-export const { useGetBoardsQuery } = boardSlice
+export const { useGetBoardsQuery, useAddBoardMutation} = boardSlice

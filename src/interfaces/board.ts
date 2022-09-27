@@ -6,7 +6,8 @@ export interface Board {
     title: string,
     workSpaceId: string,
     createdAt: Date,
-    members: User[]
+    createdUserId: string,
+    members: String[]
 }
 
 export interface Boards {

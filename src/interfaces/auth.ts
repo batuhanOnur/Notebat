@@ -24,3 +24,8 @@ export interface LoggedUser {
     lastName: string,
     id: string
 }
+
+export interface UserList {
+    $id: string,
+    $values:string[]
+}
