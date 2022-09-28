@@ -20,7 +20,7 @@ const RegisterForm:React.FC = () => {
         .then(()=> {})
     }
 
-    // inite-loop önlemek için
+    // infinite-loop önlemek için
     useEffect(()=>{
         if(isSuccess){
            setRegistered(true)

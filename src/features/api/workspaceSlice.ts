@@ -13,7 +13,6 @@ export const workspaceSlice = createApi({
             query:(userId) => ({ url: `${userId}`}),
             providesTags: ['WorkSpaces'],
             transformResponse: (response : WorkSpaces) => {
-                console.log('get workspace calisti')
                 return response;
             }
         }),

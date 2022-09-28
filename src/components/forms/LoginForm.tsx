@@ -24,7 +24,7 @@ export const LoginForm = () => {
         })
     }
 
-    // inite-loop önlemek için
+    // infinite-loop önlemek için
     useEffect(()=>{
         if(isSuccess){
             setLogin(true)
