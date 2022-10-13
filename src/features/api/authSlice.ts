@@ -58,7 +58,6 @@ export const authSlice = createApi({
                     delete element.$id
                     delete element.lastName
                 })
-                console.log('response', response)
                 return response;
             }
         })

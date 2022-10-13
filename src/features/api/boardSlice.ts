@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { Boards } from '../../interfaces/board';
+import moment from 'moment';
 
 
 export const boardSlice = createApi({
@@ -13,6 +14,9 @@ export const boardSlice = createApi({
             query:(workspaceId) => ({ url: `${workspaceId}`}),
             providesTags: ['Board'],
             transformResponse: (response : Boards) => {
+                response.$values.forEach((element:any) => {
+                    element.createdAt = moment().format("l");
+                })
                 return response;
             }
         }),

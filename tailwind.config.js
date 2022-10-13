@@ -10,7 +10,10 @@ module.exports = {
         'textgreen': '#2FDBBC',
         'textgrey': '#A3A3A3',
         'textorange':'#F99928',
-      }
+      },
+      backgroundImage: {
+        'board': "url('./src/assets/boardbackground.png)"
+      },
     },
   },
   plugins: [],

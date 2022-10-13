@@ -13,7 +13,7 @@ type Props = {
 
 const NavbarList: React.FC<Props> = (props) => {
  
-    const { data, error, isLoading, isSuccess } = useGetSpacesQuery(props.userId,{
+    const { data, isLoading, isSuccess } = useGetSpacesQuery(props.userId,{
         refetchOnMountOrArgChange: true,
         skip: false,
     });
@@ -21,12 +21,12 @@ const NavbarList: React.FC<Props> = (props) => {
     const [opened, setOpened] = useState<boolean>(false);
 
     if (isLoading) return <div>Loading...</div>
-    if (error) {
-        console.log('error', data)
-    }
-    if (isSuccess){
-        console.log('success', data)
-    }
+    // if (error) {
+    //     console.log('error', data)
+    // }
+    // if (isSuccess){
+    //     console.log('success', data)
+    // }
 
     return(
         <div>

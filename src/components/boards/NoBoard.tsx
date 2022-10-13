@@ -9,7 +9,7 @@ type Props = {
 
 const NoBoard:React.FC<Props> = (props) => {
     
-    const [opened, setOpened] = useState(false);
+  const [opened, setOpened] = useState(false);
 
   return (
     <div className="flex flex-col justify-center items-center">
