@@ -5,7 +5,7 @@ import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
 import NavigationGuard from './utils/navigationGuards/NavigationGuard'
 import BoardsPage from './pages/BoardsPage';
-//import Board from './components/boards/Board';
+import KanbanPage from './pages/KanbanPage';
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="/boards" element={<HomePage />}>
             <Route path=":id" element={<BoardsPage />}/>
+            <Route path="kanban/:boardId" element={<KanbanPage />}/>
           </Route>
         </Route>
       </Routes>
