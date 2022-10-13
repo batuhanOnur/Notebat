@@ -9,7 +9,6 @@ import KanbanPage from './pages/KanbanPage';
 
 function App() {
   return (
-    <>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
@@ -21,7 +20,6 @@ function App() {
           </Route>
         </Route>
       </Routes>
-    </>
   );
 }
 

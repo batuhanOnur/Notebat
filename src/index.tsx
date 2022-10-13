@@ -15,15 +15,15 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <React.StrictMode>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
-            <NotificationsProvider>
-                <App />
-            </NotificationsProvider>
-          </MantineProvider>
-        </PersistGate>
-      </Provider>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
+              <NotificationsProvider>
+                  <App />
+              </NotificationsProvider>
+            </MantineProvider>
+          </PersistGate>
+        </Provider>
     </React.StrictMode>
   </BrowserRouter>
 );

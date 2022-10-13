@@ -6,7 +6,8 @@ import {
     IconPencil,
     IconNotebook,
     IconPlus,
-    IconUser 
+    IconUser,
+    IconBrightnessUp, 
 } 
 from '@tabler/icons';
 
@@ -33,6 +34,8 @@ const IconProvider:React.FC<props> = (props) => {
             return <IconBook size={20}/>
           case 'user':
           return <IconUser size={20}/>
+          case 'bulb':
+          return <IconBrightnessUp size={20}/>
           default: 
             return <IconNotebook />
         }

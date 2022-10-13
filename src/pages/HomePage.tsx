@@ -1,9 +1,10 @@
 import React,{ useState} from 'react'
-import { AppShell, Navbar, Header,useMantineTheme,MediaQuery,Burger } from '@mantine/core';
+import { AppShell,Navbar,Header,useMantineTheme,MediaQuery,Burger,ScrollArea,Text,Group,ThemeIcon} from '@mantine/core';
 import NavbarList from '../components/layout/NavbarList'
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
+import IconProvider from '../icons/IconProvider'
 
 const HomePage = () => {
 
@@ -12,10 +13,6 @@ const HomePage = () => {
 
   const id = useSelector((state: RootState) => state.persistedReducer.id)
 
-  const LogOut = () => {
-     
-  }
-  
   return (
     <AppShell
       navbarOffsetBreakpoint="sm"
@@ -26,12 +23,14 @@ const HomePage = () => {
       }}
       navbar={
         <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
-          <NavbarList userId={id}/>
+          <Navbar.Section grow component={ScrollArea} mx="-xs" px="xs">
+            <NavbarList userId={id}/>
+          </Navbar.Section>
         </Navbar>
       }
       header={
         <Header height={70} p="md">
-          <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+          <div style={{ display: 'flex', alignItems: 'center', height: '100%'}}>
             <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
               <Burger
                 opened={opened}
@@ -41,8 +40,17 @@ const HomePage = () => {
                 mr="xl"
               />
             </MediaQuery>
-
-            <button onClick={LogOut}>logut</button>
+            <Group position="apart">
+              <div className="flex">
+              <ThemeIcon>
+                <IconProvider icon="book"/>
+              </ThemeIcon>
+              <Text color="white" size="lg" weight={700} className="ml-2">NoteBat</Text>
+              </div>
+              <ThemeIcon color="gray" size="md" className="cursor-pointer">
+                <IconProvider icon="bulb"/>
+              </ThemeIcon>
+            </Group>
           </div>
         </Header>
       }
