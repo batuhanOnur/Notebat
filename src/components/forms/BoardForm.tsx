@@ -49,7 +49,8 @@ const BoardForm:React.FC<Props> = (props) => {
             workSpaceId: props.workspaceId,
             createdAt: null,
             createdUserId:createdUser.id,
-            members:[]
+            members:[],
+            kanbans:[]
         },
         validate: {
             title:(value) => (value.length < 1 ? 'Name must have at least 1 letter' : null)

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { Boards } from '../../interfaces/board';
+import { Boards, KanbanSections } from '../../interfaces/board';
 import moment from 'moment';
 
 
@@ -8,7 +8,7 @@ export const boardSlice = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8000/api/board'
     }),
-    tagTypes:['Board'],
+    tagTypes:['Board','Kanban'],
     endpoints:(builder) => ({
         getBoards:builder.query<Boards,string|undefined>({
             query:(workspaceId) => ({ url: `${workspaceId}`}),
@@ -20,6 +20,10 @@ export const boardSlice = createApi({
                 return response;
             }
         }),
+        getKanbanSections: builder.query<KanbanSections,string|undefined>({
+            query:(kanbanId) => ({ url: `kanban/${kanbanId}`}),
+            providesTags: ['Kanban'],
+        }),
         addBoard: builder.mutation<Boards,string>({
             query:(payload) => ({
                 url: '/create',
@@ -30,8 +34,19 @@ export const boardSlice = createApi({
                 }
             }),
             invalidatesTags: ['Board'],
+        }),
+        addKanbanSection: builder.mutation<KanbanSections,string>({
+            query:(payload) => ({
+                url: '/createsection',
+                method: 'POST',
+                body:payload,
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
+            }),
+            invalidatesTags: ['Kanban'],
         })
     })
 })
 
-export const { useGetBoardsQuery, useAddBoardMutation} = boardSlice
+export const { useGetBoardsQuery, useGetKanbanSectionsQuery, useAddBoardMutation,useAddKanbanSectionMutation } = boardSlice

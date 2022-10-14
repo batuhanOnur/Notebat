@@ -54,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-beautiful-dnd": "^13.1.2",
     "autoprefixer": "^10.4.9",
     "postcss": "^8.4.16",
     "react-test-renderer": "^18.2.0",
