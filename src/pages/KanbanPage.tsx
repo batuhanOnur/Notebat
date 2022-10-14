@@ -24,6 +24,7 @@ const KanbanPage = () => {
         boardId: boardId,
         createdAt: null,
         createdUser: createdUser.id,
+        index: 0
     },
     validate: {
         title:(value) => (value.length < 1 ? 'Title must have at least 1 letter' : null)
@@ -40,7 +41,7 @@ const KanbanPage = () => {
   }
    
   return (
-    <>
+    <div className="flex">
        <KanbanSections boardId={boardId}/>
        { isOpen 
         ? <form onSubmit={form.onSubmit((values:any) => {sendSection(values)})} className="w-[300px] h-[100px] p-2 bg-gray-500">
@@ -53,7 +54,7 @@ const KanbanPage = () => {
             
         : <Button leftIcon={<IconProvider icon="plus" />} variant="outline" onClick={()=> setInputOpen(true)}>Add Section</Button>
        }
-    </>
+    </div>
   )
 }
 
