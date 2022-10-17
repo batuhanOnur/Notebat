@@ -44,15 +44,19 @@ const KanbanPage = () => {
     <div className="flex">
        <KanbanSections boardId={boardId}/>
        { isOpen 
-        ? <form onSubmit={form.onSubmit((values:any) => {sendSection(values)})} className="w-[300px] h-[100px] p-2 bg-gray-500">
-                <TextInput placeholder="Enter list title" {...form.getInputProps('title')}/>
-                <div className="flex justify-between mt-2">
-                    <Button color="teal" className="bg-teal-700" type="submit" >Add</Button>
-                    <CloseButton title="Close popover" size="lg" iconSize={20} onClick={()=> setInputOpen(false)}/>
-                </div>
-          </form>
+        ? <div className="p-10">
+            <form onSubmit={form.onSubmit((values:any) => {sendSection(values)})} className="w-[300px] h-[100px] p-2 bg-gray-500">
+                  <TextInput placeholder="Enter list title" {...form.getInputProps('title')}/>
+                  <div className="flex justify-between mt-2">
+                      <Button color="teal" className="bg-teal-700" type="submit" >Add</Button>
+                      <CloseButton title="Close popover" size="lg" iconSize={20} onClick={()=> setInputOpen(false)}/>
+                  </div>
+            </form>
+          </div> 
             
-        : <Button leftIcon={<IconProvider icon="plus" />} variant="outline" onClick={()=> setInputOpen(true)}>Add Section</Button>
+        : <div className="p-10">
+          <Button leftIcon={<IconProvider icon="plus" />} variant="outline" onClick={()=> setInputOpen(true)}>Add Section</Button>
+        </div> 
        }
     </div>
   )

@@ -21,16 +21,25 @@ const KanbanSections:React.FC<Props> = (props) => {
   if(isSuccess) console.log('sections', data)
 
   return (
-    <div className="p-10">
+    <div className="p-10 grid grid-cols-5 gap-5">
       <DragDropContext onDragEnd={onDragEnd}>
         { isSuccess && 
           <>
           {
             data.$values.map((section,index) => (
-              <div key={section.$id}>{section.title}</div>
-              // <Droppable key={index} droppableId={`${index}`}>
-                
-              // </Droppable>
+              <div className="w-[200px] bg-[#49505e] min-h-[100px] rounded-md">
+                <div key={section.$id} className="p-2">{section.title}</div>
+                <Droppable key={index} droppableId={`${index}`}>
+                  {(provided,snapshot) => (
+                    <div
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                    >
+
+                    </div>
+                  )}
+                </Droppable>
+              </div>
             ))
           }
           </>
